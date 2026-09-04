@@ -120,18 +120,59 @@ def screen_loop():
         return
     try:
         import mss
-        import pytesseract
         from PIL import Image
     except ImportError:
-        print("[screen] mss/pytesseract not installed - screen reading disabled")
+        print("[screen] mss/Pillow not installed - screen reading disabled")
         return
+    # OCR backend: native Windows.Media.Ocr on Windows (no Tesseract needed),
+    # pytesseract elsewhere.
+    win_ocr = None
+    if sys.platform == "win32":
+        try:
+            import asyncio
+            from winsdk.windows.media.ocr import OcrEngine
+            from winsdk.windows.globalization import Language
+            from winsdk.windows.graphics.imaging import BitmapDecoder
+            import winsdk.windows.storage.streams as streams
+            win_ocr = OcrEngine.try_create_from_language(Language("en-US")) or OcrEngine.try_create_from_user_profile_languages()
+            print(f"[screen] using Windows.Media.Ocr (native)")
+        except ImportError:
+            print("[screen] winsdk not installed - falling back to pytesseract")
+    if win_ocr is None:
+        try:
+            import pytesseract
+        except ImportError:
+            print("[screen] no OCR backend (winsdk or pytesseract) - screen reading disabled")
+            return
+
+    def _win_ocr_bytes(pil_img):
+        import io
+        png = io.BytesIO()
+        pil_img.save(png, format="PNG")
+        data = png.getvalue()
+
+        async def _run():
+            stream = streams.InMemoryRandomAccessStream()
+            writer = stream.get_output_stream_at(0)
+            await writer.write_async(streams.DataWriter().detach_buffer())
+            dw = streams.DataWriter(writer)
+            await dw.write_bytes(data)
+            await dw.store_async()
+            decoder = await BitmapDecoder.create_async(stream)
+            bitmap = await decoder.get_software_bitmap_async()
+            result = await win_ocr.recognize_async(bitmap)
+            return result.text
+
+        return asyncio.run(_run())
+
     seen = set()
     while True:
         time.sleep(SCREEN_INTERVAL)
         try:
             with mss.mss() as sct:
                 img = np.array(sct.grab(sct.monitors[1]))[:, :, :3]
-            text = pytesseract.image_to_string(Image.fromarray(img))
+            pil = Image.fromarray(img)
+            text = _win_ocr_bytes(pil) if win_ocr is not None else pytesseract.image_to_string(pil)
             for line in text.splitlines():
                 line = line.strip()
                 if len(line) < 15 or line in seen:
@@ -158,9 +199,23 @@ def system_audio_loop():
     if not SYSTEM_DEVICE:
         return
     from RealtimeSTT import AudioToTextRecorder
+    import sounddevice as sd
+    # resolve loopback device NAME -> index (RealtimeSTT takes input_device_index)
+    idx = None
+    for i, d in enumerate(sd.query_devices()):
+        if d["max_input_channels"] > 0 and SYSTEM_DEVICE.lower() in d["name"].lower():
+            idx = i
+            break
+    if idx is None:
+        print(f"[caller] no input device matching {SYSTEM_DEVICE!r}; available inputs:")
+        for i, d in enumerate(sd.query_devices()):
+            if d["max_input_channels"] > 0:
+                print(f"  {i}: {d['name']}")
+        return
+    print(f"[caller] using input device {idx}: {sd.query_devices()[idx]['name']}")
     recorder = AudioToTextRecorder(
         model="small", enable_realtime_transcription=True,
-        device=SYSTEM_DEVICE)  # RealtimeSTT accepts a device name substring
+        input_device_index=idx)
     def cb(text):
         if text.strip():
             on_transcript(f"[caller] {text}")
