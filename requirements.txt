@@ -4,3 +4,7 @@ fastapi>=0.115
 uvicorn>=0.30
 RealtimeSTT>=0.1.14
 openai>=1.40
+
+# Optional - screen OCR input (COPILOT_SCREEN=1, default on; skips gracefully if missing)
+# mss>=9.0
+# pytesseract>=0.3.10

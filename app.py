@@ -104,10 +104,78 @@ def stt_loop():
     while True:
         recorder.text(cb)
 
+# ---- optional: screen capture + OCR (question text off shared screen) ----
+SCREEN_ENABLED = os.environ.get("COPILOT_SCREEN", "1") == "1"
+SCREEN_INTERVAL = float(os.environ.get("COPILOT_SCREEN_INTERVAL", "4"))  # seconds
+
+
+def screen_loop():
+    """Screenshot -> OCR -> feed candidate question lines into the same pipeline.
+
+    Uses mss (fast screenshots) + pytesseract. Install: pip install mss pytesseract
+    + the Tesseract binary (mac: brew install tesseract, win: installer, linux: apt).
+    Only feeds lines that look like questions; dedupes repeats.
+    """
+    if not SCREEN_ENABLED:
+        return
+    try:
+        import mss
+        import pytesseract
+        from PIL import Image
+    except ImportError:
+        print("[screen] mss/pytesseract not installed - screen reading disabled")
+        return
+    seen = set()
+    while True:
+        time.sleep(SCREEN_INTERVAL)
+        try:
+            with mss.mss() as sct:
+                img = np.array(sct.grab(sct.monitors[1]))[:, :, :3]
+            text = pytesseract.image_to_string(Image.fromarray(img))
+            for line in text.splitlines():
+                line = line.strip()
+                if len(line) < 15 or line in seen:
+                    continue
+                low = line.lower()
+                if "?" in line or any(w in low for w in ["tell me", "how do you", "describe", "walk me", "what is", "have you", "why do", "explain"]):
+                    seen.add(line)
+                    on_transcript(f"[screen] {line}")
+        except Exception as e:
+            print(f"[screen] {e}")
+            return
+
+
+# ---- dual-audio: mic (you) + system loopback (interviewer) ----
+# macOS: install BlackHole (brew install blackhole-2ch), set macOS output to
+#   BlackHole, then COPILOT_SYSTEM_DEVICE="BlackHole".
+# Windows: enable Stereo Mix, or install VB-CABLE and route app output to it,
+#   then COPILOT_SYSTEM_DEVICE="CABLE Output".
+SYSTEM_DEVICE = os.environ.get("COPILOT_SYSTEM_DEVICE", "")
+
+
+def system_audio_loop():
+    """Second recorder for system/loopback audio (the interviewer's voice)."""
+    if not SYSTEM_DEVICE:
+        return
+    from RealtimeSTT import AudioToTextRecorder
+    recorder = AudioToTextRecorder(
+        model="small", enable_realtime_transcription=True,
+        device=SYSTEM_DEVICE)  # RealtimeSTT accepts a device name substring
+    def cb(text):
+        if text.strip():
+            on_transcript(f"[caller] {text}")
+    while True:
+        recorder.text(cb)
+
+
 def main():
     os.makedirs(os.path.join(os.path.dirname(__file__), "sessions"), exist_ok=True)
     import threading
-    threading.Thread(target=stt_loop, daemon=True).start()
+    threading.Thread(target=stt_loop, daemon=True).start()          # your mic
+    if SYSTEM_DEVICE:
+        threading.Thread(target=system_audio_loop, daemon=True).start()  # interviewer (loopback)
+    if SCREEN_ENABLED:
+        threading.Thread(target=screen_loop, daemon=True).start()    # screen OCR
     uvicorn.run(app, host="0.0.0.0", port=8765)
 
 if __name__ == "__main__":

@@ -35,6 +35,18 @@ Grant your terminal Microphone permission (macOS: System Settings > Privacy & Se
 - Session transcripts log to `sessions/` (gitignored) for post-call review.
 - Latency budget end to end: ~4s from end of interviewer's sentence to suggestion on screen.
 
+## Inputs
+
+The copilot listens to three optional sources (all feed the same question pipeline):
+
+1. **Your mic** (default on) - catches questions repeated aloud.
+2. **System audio / interviewer's voice** - set `COPILOT_SYSTEM_DEVICE` to a loopback device name:
+   - macOS: `brew install blackhole-2ch`, set system output to BlackHole, then `COPILOT_SYSTEM_DEVICE="BlackHole"`
+   - Windows: enable Stereo Mix or install VB-CABLE, then `COPILOT_SYSTEM_DEVICE="CABLE Output"`
+3. **Screen OCR** (on by default, `COPILOT_SCREEN=0` to disable) - screenshots every 4s and reads questions written on screen. Needs `pip install mss pytesseract` plus the Tesseract binary (mac: `brew install tesseract`, win: official installer). Tune interval with `COPILOT_SCREEN_INTERVAL`.
+
+Transcript entries are tagged `[caller]` (system audio) and `[screen]` (OCR) so you can see where each suggestion came from.
+
 ## Honest-use
 
 Built for interview prep drills and self-review. Use responsibly and in line with the rules of any assessment you take.
