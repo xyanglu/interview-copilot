@@ -14,7 +14,7 @@ Audio never leaves the machine except the LLM API call. Nothing is overlaid on t
 
 ## Setup
 
-    python3 -m venv venv && ./venv/bin/pip install fastapi uvicorn RealtimeSTT openai
+    python3 -m venv venv && ./venv/bin/pip install -r requirements.txt
 
 Environment (in `~/.hermes/.env` or export before running):
 
