@@ -10,7 +10,7 @@ app = FastAPI()
 clients = set()
 transcript_tail = []  # rolling last 8 turns
 
-PROFILE_BRIEF = open(os.path.join(os.path.dirname(__file__), "profile_brief.txt")).read() if os.path.exists(os.path.join(os.path.dirname(__file__), "profile_brief.txt")) else "Yang Lu: 5y SWE, Java/Spring deep (Alaia 4y), Python/LLM current (RAG, RAG, MCP, evals, FastAPI)."
+PROFILE_BRIEF = open(os.path.join(os.path.dirname(__file__), "profile_brief.txt")).read() if os.path.exists(os.path.join(os.path.dirname(__file__), "profile_brief.txt")) else "Yang Lu: 5y SWE, Java/Spring deep (Alaia 4y), Python/LLM current (RAG pipeline, LLM evals, FastAPI)."
 
 SYSTEM_PROMPT = """You are an interview copilot. Given the interviewer's last question and a rolling transcript, output 2-3 short bullet talking points (40 words max total) that Yang should say. Ground them in his profile. No preamble, just bullets."""
 
