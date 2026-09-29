@@ -1,0 +1,23 @@
+RETURNCODE: 1
+--- STDOUT ---
+🔍 Scanning We Work Remotely for AI/ML gigs...
+
+
+--- STDERR ---
+Traceback (most recent call last):
+  File "/Users/runner/work/interview-copilot/interview-copilot/gig-runner/gig_scanner.py", line 170, in <module>
+    main()
+    ~~~~^^
+  File "/Users/runner/work/interview-copilot/interview-copilot/gig-runner/gig_scanner.py", line 144, in main
+    save_seen(list(new_seen))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/runner/work/interview-copilot/interview-copilot/gig-runner/gig_scanner.py", line 44, in save_seen
+    SEEN_FILE.write_text(json.dumps(ids))
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 809, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/runner/.hermes/seen_gigs.json'
