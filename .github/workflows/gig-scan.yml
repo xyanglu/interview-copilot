@@ -1,0 +1,23 @@
+name: Gig scanner runner
+on:
+  schedule:
+    - cron: '0 13 * * *'
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  run-gig-scanner:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run gig_scanner.py and capture output
+        run: |
+          set -e
+          python3 gig-runner/run_now.py
+      - name: Commit output
+        run: |
+          git config user.name "gig-cron"
+          git config user.email "actions@users.noreply.github.com"
+          git add gig-runner/last_output.txt
+          git commit -m "gig scan output $(date -u +%Y-%m-%dT%H:%M:%SZ)" || echo "nothing to commit"
+          git push
