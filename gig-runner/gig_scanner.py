@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Gig Work Scanner — Fetches contract/remote AI/ML gigs from We Work Remotely.
-Designed to be run by Hermes cron. Surfaces only worthwhile matches.
+Designed to be run by Hermes cron (or GitHub Actions via gig-runner/).
+Surfaces only worthwhile matches.
 """
 import json
 import os
@@ -41,6 +42,7 @@ def load_seen():
     return []
 
 def save_seen(ids):
+    SEEN_FILE.parent.mkdir(parents=True, exist_ok=True)
     SEEN_FILE.write_text(json.dumps(ids))
 
 def fetch_feed():
@@ -115,18 +117,19 @@ def format_gig(gig, score, reasons):
 def main():
     seen = set(load_seen())
 
-    print("🔍 Scanning We Work Remotely for AI/ML gigs...\n")
+    print("🔍 Scanning We Work Remotely for AI/ML gigs...\\n")
 
     try:
         xml_data = fetch_feed()
     except Exception as e:
         print(f"Error fetching feed: {e}")
-        return
+        sys.exit(1)
 
     items = parse_feed(xml_data)
 
     # Score and filter
     scored = []
+    low_scoring = []
     for item in items:
         gig_id = item["url"]
         if gig_id in seen:
@@ -135,19 +138,21 @@ def main():
         score, reasons = score_gig(item)
         if score >= 5:  # Minimum threshold
             scored.append((score, item, reasons))
+        else:
+            low_scoring.append(item)
 
     # Sort by score descending
     scored.sort(key=lambda x: x[0], reverse=True)
 
     # Mark all as seen (even low-scoring ones, to avoid re-processing)
-    new_seen = seen | {item["url"] for _, item, _ in scored}
+    new_seen = seen | {item["url"] for _, item, _ in scored} | {item["url"] for item in low_scoring}
     save_seen(list(new_seen))
 
     if not scored:
-        print("No worthwhile new gigs found.\n")
+        print("No worthwhile new gigs found.\\n")
         return
 
-    print(f"Found {len(scored)} worthwhile gig{'s' if len(scored) != 1 else ''}:\n")
+    print(f"Found {len(scored)} worthwhile gig{'s' if len(scored) != 1 else ''}:\\n")
 
     for i, (score, item, reasons) in enumerate(scored[:10], 1):
         print(f"{'='*60}")
