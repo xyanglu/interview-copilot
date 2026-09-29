@@ -2,6 +2,9 @@
 
 Helper scripts for the gig-scan cron (MCP-only, no terminal access in cron sessions).
 
-`run_now.py` executes gig_scanner.py and writes its stdout/stderr to a file that the cron can read via filesystem MCP.
+- `gig_scanner.py`: copy of ~/scripts/gig_scanner.py (We Work Remotely RSS scan, score >= 5).
+- `run_now.py`: executes the scanner and writes stdout/stderr to `gig-runner/last_output.txt`.
+- `.github/workflows/gig-scan.yml`: Actions workflow, runs daily 13:00 UTC on `macos-latest`, commits `last_output.txt` back here so the cron can read it via GitHub MCP (`get_file_contents` on `gig-runner/last_output.txt`).
+- `last_output.txt`: committed scan output, updated by the workflow.
 
-GitHub Actions workflow (add manually via the UI) triggers run_now.py on schedule and commits `last_output.txt` back to this directory so the cron can read results.
+To trigger an off-schedule run: Actions tab > Gig scanner runner > Run workflow.
