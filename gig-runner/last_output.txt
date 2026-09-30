@@ -1,23 +1,47 @@
-RETURNCODE: 1
+RETURNCODE: 0
 --- STDOUT ---
 🔍 Scanning We Work Remotely for AI/ML gigs...
 
+Found 2 worthwhile gigs:
+
+============================================================
+1. Pinterest: Data Scientist II, Infrastructure
+   Region: Anywhere in the World
+   Score: 18/100 — ai
+   https://weworkremotely.com/remote-jobs/pinterest-data-scientist-ii-infrastructure
+
+============================================================
+2. Sticker Mule: Software engineer
+   Region: Anywhere in the World
+   Score: 16/100 — ai, full-stack, typescript, react
+   https://weworkremotely.com/remote-jobs/sticker-mule-software-engineer-3
+
+---JSON_START---
+[
+  {
+    "title": "Pinterest: Data Scientist II, Infrastructure",
+    "company": "",
+    "region": "Anywhere in the World",
+    "url": "https://weworkremotely.com/remote-jobs/pinterest-data-scientist-ii-infrastructure",
+    "score": 18,
+    "reasons": [
+      "ai"
+    ]
+  },
+  {
+    "title": "Sticker Mule: Software engineer",
+    "company": "",
+    "region": "Anywhere in the World",
+    "url": "https://weworkremotely.com/remote-jobs/sticker-mule-software-engineer-3",
+    "score": 16,
+    "reasons": [
+      "ai",
+      "full-stack",
+      "typescript",
+      "react"
+    ]
+  }
+]
+---JSON_END---
 
 --- STDERR ---
-Traceback (most recent call last):
-  File "/Users/runner/work/interview-copilot/interview-copilot/gig-runner/gig_scanner.py", line 170, in <module>
-    main()
-    ~~~~^^
-  File "/Users/runner/work/interview-copilot/interview-copilot/gig-runner/gig_scanner.py", line 144, in main
-    save_seen(list(new_seen))
-    ~~~~~~~~~^^^^^^^^^^^^^^^^
-  File "/Users/runner/work/interview-copilot/interview-copilot/gig-runner/gig_scanner.py", line 44, in save_seen
-    SEEN_FILE.write_text(json.dumps(ids))
-    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 809, in write_text
-    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
-         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 771, in open
-    return io.open(self, mode, buffering, encoding, errors, newline)
-           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: '/Users/runner/.hermes/seen_gigs.json'
