@@ -19,5 +19,6 @@ jobs:
           git config user.name "gig-cron"
           git config user.email "actions@users.noreply.github.com"
           git add gig-runner/last_output.txt
+          git add -f gig-runner/seen_gigs.json
           git commit -m "gig scan output $(date -u +%Y-%m-%dT%H:%M:%SZ)" || echo "nothing to commit"
           git push
