@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
 Gig Work Scanner — Fetches contract/remote AI/ML gigs from We Work Remotely.
-Designed to be run by Hermes cron (or GitHub Actions via gig-runner/).
-Surfaces only worthwhile matches.
+Designed to be run by Hermes cron. Surfaces only worthwhile matches.
 """
 import json
 import os
@@ -59,7 +58,7 @@ def parse_feed(xml_data):
         link = item.findtext("link", "") or item.findtext("guid", "")
         pub_date = item.findtext("pubDate", "")
         region = item.findtext("region", "")
-
+        
         items.append({
             "title": title.strip(),
             "description": desc.strip(),
@@ -116,44 +115,41 @@ def format_gig(gig, score, reasons):
 
 def main():
     seen = set(load_seen())
-
-    print("🔍 Scanning We Work Remotely for AI/ML gigs...\\n")
-
+    
+    print("🔍 Scanning We Work Remotely for AI/ML gigs...\n")
+    
     try:
         xml_data = fetch_feed()
     except Exception as e:
         print(f"Error fetching feed: {e}")
-        sys.exit(1)
-
+        return
+    
     items = parse_feed(xml_data)
-
+    
     # Score and filter
     scored = []
-    low_scoring = []
     for item in items:
         gig_id = item["url"]
         if gig_id in seen:
             continue
-
+        
         score, reasons = score_gig(item)
         if score >= 5:  # Minimum threshold
             scored.append((score, item, reasons))
-        else:
-            low_scoring.append(item)
-
+    
     # Sort by score descending
     scored.sort(key=lambda x: x[0], reverse=True)
-
-    # Mark all as seen (even low-scoring ones, to avoid re-processing)
-    new_seen = seen | {item["url"] for _, item, _ in scored} | {item["url"] for item in low_scoring}
+    
+    # Mark ALL feed items as seen (even low-scoring ones, to avoid re-processing)
+    new_seen = seen | {item["url"] for item in items}
     save_seen(list(new_seen))
-
+    
     if not scored:
-        print("No worthwhile new gigs found.\\n")
+        print("No worthwhile new gigs found.\n")
         return
-
-    print(f"Found {len(scored)} worthwhile gig{'s' if len(scored) != 1 else ''}:\\n")
-
+    
+    print(f"Found {len(scored)} worthwhile gig{'s' if len(scored) != 1 else ''}:\n")
+    
     for i, (score, item, reasons) in enumerate(scored[:10], 1):
         print(f"{'='*60}")
         print(f"{i}. {item['title']}")
@@ -161,12 +157,12 @@ def main():
         print(f"   Score: {score}/100 — {', '.join(reasons[:4])}")
         print(f"   {item['url']}")
         print()
-
+    
     # Also output structured JSON for cron delivery
     result = []
     for score, item, reasons in scored[:10]:
         result.append(format_gig(item, score, reasons))
-
+    
     print("---JSON_START---")
     print(json.dumps(result, indent=2))
     print("---JSON_END---")
