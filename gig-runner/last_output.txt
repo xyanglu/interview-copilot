@@ -2,46 +2,7 @@ RETURNCODE: 0
 --- STDOUT ---
 🔍 Scanning We Work Remotely for AI/ML gigs...
 
-Found 2 worthwhile gigs:
+No worthwhile new gigs found.
 
-============================================================
-1. Pinterest: Data Scientist II, Infrastructure
-   Region: Anywhere in the World
-   Score: 18/100 — ai
-   https://weworkremotely.com/remote-jobs/pinterest-data-scientist-ii-infrastructure
-
-============================================================
-2. Sticker Mule: Software engineer
-   Region: Anywhere in the World
-   Score: 16/100 — ai, full-stack, typescript, react
-   https://weworkremotely.com/remote-jobs/sticker-mule-software-engineer-3
-
----JSON_START---
-[
-  {
-    "title": "Pinterest: Data Scientist II, Infrastructure",
-    "company": "",
-    "region": "Anywhere in the World",
-    "url": "https://weworkremotely.com/remote-jobs/pinterest-data-scientist-ii-infrastructure",
-    "score": 18,
-    "reasons": [
-      "ai"
-    ]
-  },
-  {
-    "title": "Sticker Mule: Software engineer",
-    "company": "",
-    "region": "Anywhere in the World",
-    "url": "https://weworkremotely.com/remote-jobs/sticker-mule-software-engineer-3",
-    "score": 16,
-    "reasons": [
-      "ai",
-      "full-stack",
-      "typescript",
-      "react"
-    ]
-  }
-]
----JSON_END---
 
 --- STDERR ---
