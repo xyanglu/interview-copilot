@@ -2,28 +2,7 @@ RETURNCODE: 0
 --- STDOUT ---
 🔍 Scanning We Work Remotely for AI/ML gigs...
 
-Found 1 worthwhile gig:
+No worthwhile new gigs found.
 
-============================================================
-1. Lithic: Senior Risk Associate
-   Region: Anywhere in the World
-   Score: 44/100 — ai, agent
-   https://weworkremotely.com/remote-jobs/lithic-senior-risk-associate
-
----JSON_START---
-[
-  {
-    "title": "Lithic: Senior Risk Associate",
-    "company": "",
-    "region": "Anywhere in the World",
-    "url": "https://weworkremotely.com/remote-jobs/lithic-senior-risk-associate",
-    "score": 44,
-    "reasons": [
-      "ai",
-      "agent"
-    ]
-  }
-]
----JSON_END---
 
 --- STDERR ---
