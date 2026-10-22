@@ -2,6 +2,7 @@ RETURNCODE: 0
 --- STDOUT ---
 🔍 Scanning We Work Remotely for AI/ML gigs...
 
-Error fetching feed: The read operation timed out
+No worthwhile new gigs found.
+
 
 --- STDERR ---
