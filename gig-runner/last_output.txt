@@ -2,7 +2,31 @@ RETURNCODE: 0
 --- STDOUT ---
 🔍 Scanning We Work Remotely for AI/ML gigs...
 
-No worthwhile new gigs found.
+Found 1 worthwhile gig:
 
+============================================================
+1. Toptal: Applied AI Engineers for telecommunications company
+   Region: USA Only
+   Score: 71/100 — ai, machine learning, ml, llm
+   https://weworkremotely.com/remote-jobs/toptal-applied-ai-engineers-for-telecommunications-company
+
+---JSON_START---
+[
+  {
+    "title": "Toptal: Applied AI Engineers for telecommunications company",
+    "company": "",
+    "region": "USA Only",
+    "url": "https://weworkremotely.com/remote-jobs/toptal-applied-ai-engineers-for-telecommunications-company",
+    "score": 71,
+    "reasons": [
+      "ai",
+      "machine learning",
+      "ml",
+      "llm",
+      "python"
+    ]
+  }
+]
+---JSON_END---
 
 --- STDERR ---
