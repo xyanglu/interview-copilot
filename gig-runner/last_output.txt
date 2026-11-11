@@ -2,7 +2,28 @@ RETURNCODE: 0
 --- STDOUT ---
 🔍 Scanning We Work Remotely for AI/ML gigs...
 
-No worthwhile new gigs found.
+Found 1 worthwhile gig:
 
+============================================================
+1. BDF EXPERTS: SAP Berater FI/CO (M/W/D)
+   Region: Anywhere in the World
+   Score: 6/100 — ai, rag
+   https://weworkremotely.com/remote-jobs/bdf-experts-sap-berater-fi-co-m-w-d
+
+---JSON_START---
+[
+  {
+    "title": "BDF EXPERTS: SAP Berater FI/CO (M/W/D)",
+    "company": "",
+    "region": "Anywhere in the World",
+    "url": "https://weworkremotely.com/remote-jobs/bdf-experts-sap-berater-fi-co-m-w-d",
+    "score": 6,
+    "reasons": [
+      "ai",
+      "rag"
+    ]
+  }
+]
+---JSON_END---
 
 --- STDERR ---
