@@ -5,22 +5,21 @@ RETURNCODE: 0
 Found 1 worthwhile gig:
 
 ============================================================
-1. BDF EXPERTS: SAP Berater FI/CO (M/W/D)
-   Region: Anywhere in the World
-   Score: 6/100 — ai, rag
-   https://weworkremotely.com/remote-jobs/bdf-experts-sap-berater-fi-co-m-w-d
+1. Cigna Healthcare: Clinical Program Senior Advisor - Remote - Express Scripts (Academic Detailing)
+   Region: USA Only
+   Score: 45/100 — ai
+   https://weworkremotely.com/remote-jobs/cigna-healthcare-clinical-program-senior-advisor-remote-express-scripts-academic-detailing
 
 ---JSON_START---
 [
   {
-    "title": "BDF EXPERTS: SAP Berater FI/CO (M/W/D)",
+    "title": "Cigna Healthcare: Clinical Program Senior Advisor - Remote - Express Scripts (Academic Detailing)",
     "company": "",
-    "region": "Anywhere in the World",
-    "url": "https://weworkremotely.com/remote-jobs/bdf-experts-sap-berater-fi-co-m-w-d",
-    "score": 6,
+    "region": "USA Only",
+    "url": "https://weworkremotely.com/remote-jobs/cigna-healthcare-clinical-program-senior-advisor-remote-express-scripts-academic-detailing",
+    "score": 45,
     "reasons": [
-      "ai",
-      "rag"
+      "ai"
     ]
   }
 ]
