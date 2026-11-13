@@ -2,27 +2,7 @@ RETURNCODE: 0
 --- STDOUT ---
 🔍 Scanning We Work Remotely for AI/ML gigs...
 
-Found 1 worthwhile gig:
+No worthwhile new gigs found.
 
-============================================================
-1. Cigna Healthcare: Clinical Program Senior Advisor - Remote - Express Scripts (Academic Detailing)
-   Region: USA Only
-   Score: 45/100 — ai
-   https://weworkremotely.com/remote-jobs/cigna-healthcare-clinical-program-senior-advisor-remote-express-scripts-academic-detailing
-
----JSON_START---
-[
-  {
-    "title": "Cigna Healthcare: Clinical Program Senior Advisor - Remote - Express Scripts (Academic Detailing)",
-    "company": "",
-    "region": "USA Only",
-    "url": "https://weworkremotely.com/remote-jobs/cigna-healthcare-clinical-program-senior-advisor-remote-express-scripts-academic-detailing",
-    "score": 45,
-    "reasons": [
-      "ai"
-    ]
-  }
-]
----JSON_END---
 
 --- STDERR ---
