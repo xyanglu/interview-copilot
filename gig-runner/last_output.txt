@@ -2,7 +2,47 @@ RETURNCODE: 0
 --- STDOUT ---
 🔍 Scanning We Work Remotely for AI/ML gigs...
 
-No worthwhile new gigs found.
+Found 2 worthwhile gigs:
 
+============================================================
+1. Toptal: AI Engineer - Agentic Systems
+   Region: USA Only
+   Score: 84/100 — ai, agent, openai, claude
+   https://weworkremotely.com/remote-jobs/toptal-ai-engineer-agentic-systems
+
+============================================================
+2. Toptal: Senior Deployment Engineer with LLM and GPU Infrastructure experience
+   Region: EMEA Only
+   Score: 45/100 — ai, llm
+   https://weworkremotely.com/remote-jobs/toptal-senior-deployment-engineer-with-llm-and-gpu-infrastructure-experience
+
+---JSON_START---
+[
+  {
+    "title": "Toptal: AI Engineer - Agentic Systems",
+    "company": "",
+    "region": "USA Only",
+    "url": "https://weworkremotely.com/remote-jobs/toptal-ai-engineer-agentic-systems",
+    "score": 84,
+    "reasons": [
+      "ai",
+      "agent",
+      "openai",
+      "claude"
+    ]
+  },
+  {
+    "title": "Toptal: Senior Deployment Engineer with LLM and GPU Infrastructure experience",
+    "company": "",
+    "region": "EMEA Only",
+    "url": "https://weworkremotely.com/remote-jobs/toptal-senior-deployment-engineer-with-llm-and-gpu-infrastructure-experience",
+    "score": 45,
+    "reasons": [
+      "ai",
+      "llm"
+    ]
+  }
+]
+---JSON_END---
 
 --- STDERR ---
