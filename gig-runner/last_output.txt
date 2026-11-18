@@ -5,41 +5,40 @@ RETURNCODE: 0
 Found 2 worthwhile gigs:
 
 ============================================================
-1. Toptal: AI Engineer - Agentic Systems
-   Region: USA Only
-   Score: 84/100 — ai, agent, openai, claude
-   https://weworkremotely.com/remote-jobs/toptal-ai-engineer-agentic-systems
+1. Coinbase: Broker Dealer Operations, Associate
+   Region: Anywhere in the World
+   Score: 30/100 — ai, ml, rag
+   https://weworkremotely.com/remote-jobs/coinbase-broker-dealer-operations-associate
 
 ============================================================
-2. Toptal: Senior Deployment Engineer with LLM and GPU Infrastructure experience
-   Region: EMEA Only
-   Score: 45/100 — ai, llm
-   https://weworkremotely.com/remote-jobs/toptal-senior-deployment-engineer-with-llm-and-gpu-infrastructure-experience
+2. Coinbase: Associate Manager, Internal Audit
+   Region: Anywhere in the World
+   Score: 20/100 — ai, ml
+   https://weworkremotely.com/remote-jobs/coinbase-associate-manager-internal-audit
 
 ---JSON_START---
 [
   {
-    "title": "Toptal: AI Engineer - Agentic Systems",
+    "title": "Coinbase: Broker Dealer Operations, Associate",
     "company": "",
-    "region": "USA Only",
-    "url": "https://weworkremotely.com/remote-jobs/toptal-ai-engineer-agentic-systems",
-    "score": 84,
+    "region": "Anywhere in the World",
+    "url": "https://weworkremotely.com/remote-jobs/coinbase-broker-dealer-operations-associate",
+    "score": 30,
     "reasons": [
       "ai",
-      "agent",
-      "openai",
-      "claude"
+      "ml",
+      "rag"
     ]
   },
   {
-    "title": "Toptal: Senior Deployment Engineer with LLM and GPU Infrastructure experience",
+    "title": "Coinbase: Associate Manager, Internal Audit",
     "company": "",
-    "region": "EMEA Only",
-    "url": "https://weworkremotely.com/remote-jobs/toptal-senior-deployment-engineer-with-llm-and-gpu-infrastructure-experience",
-    "score": 45,
+    "region": "Anywhere in the World",
+    "url": "https://weworkremotely.com/remote-jobs/coinbase-associate-manager-internal-audit",
+    "score": 20,
     "reasons": [
       "ai",
-      "llm"
+      "ml"
     ]
   }
 ]
