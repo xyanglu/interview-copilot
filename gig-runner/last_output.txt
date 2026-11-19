@@ -2,46 +2,7 @@ RETURNCODE: 0
 --- STDOUT ---
 🔍 Scanning We Work Remotely for AI/ML gigs...
 
-Found 2 worthwhile gigs:
+No worthwhile new gigs found.
 
-============================================================
-1. Coinbase: Broker Dealer Operations, Associate
-   Region: Anywhere in the World
-   Score: 30/100 — ai, ml, rag
-   https://weworkremotely.com/remote-jobs/coinbase-broker-dealer-operations-associate
-
-============================================================
-2. Coinbase: Associate Manager, Internal Audit
-   Region: Anywhere in the World
-   Score: 20/100 — ai, ml
-   https://weworkremotely.com/remote-jobs/coinbase-associate-manager-internal-audit
-
----JSON_START---
-[
-  {
-    "title": "Coinbase: Broker Dealer Operations, Associate",
-    "company": "",
-    "region": "Anywhere in the World",
-    "url": "https://weworkremotely.com/remote-jobs/coinbase-broker-dealer-operations-associate",
-    "score": 30,
-    "reasons": [
-      "ai",
-      "ml",
-      "rag"
-    ]
-  },
-  {
-    "title": "Coinbase: Associate Manager, Internal Audit",
-    "company": "",
-    "region": "Anywhere in the World",
-    "url": "https://weworkremotely.com/remote-jobs/coinbase-associate-manager-internal-audit",
-    "score": 20,
-    "reasons": [
-      "ai",
-      "ml"
-    ]
-  }
-]
----JSON_END---
 
 --- STDERR ---
