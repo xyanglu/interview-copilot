@@ -2,7 +2,45 @@ RETURNCODE: 0
 --- STDOUT ---
 🔍 Scanning We Work Remotely for AI/ML gigs...
 
-No worthwhile new gigs found.
+Found 2 worthwhile gigs:
 
+============================================================
+1. Custom Mechanical Solutions: Quality and Reliability Engineer
+   Region: USA Only
+   Score: 42/100 — ai
+   https://weworkremotely.com/remote-jobs/custom-mechanical-solutions-quality-and-reliability-engineer
+
+============================================================
+2. MANTECH: Quantum Research Scientist
+   Region: USA Only
+   Score: 16/100 — ai, machine learning, rag
+   https://weworkremotely.com/remote-jobs/mantech-quantum-research-scientist
+
+---JSON_START---
+[
+  {
+    "title": "Custom Mechanical Solutions: Quality and Reliability Engineer",
+    "company": "",
+    "region": "USA Only",
+    "url": "https://weworkremotely.com/remote-jobs/custom-mechanical-solutions-quality-and-reliability-engineer",
+    "score": 42,
+    "reasons": [
+      "ai"
+    ]
+  },
+  {
+    "title": "MANTECH: Quantum Research Scientist",
+    "company": "",
+    "region": "USA Only",
+    "url": "https://weworkremotely.com/remote-jobs/mantech-quantum-research-scientist",
+    "score": 16,
+    "reasons": [
+      "ai",
+      "machine learning",
+      "rag"
+    ]
+  }
+]
+---JSON_END---
 
 --- STDERR ---
