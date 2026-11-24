@@ -2,31 +2,7 @@ RETURNCODE: 0
 --- STDOUT ---
 🔍 Scanning We Work Remotely for AI/ML gigs...
 
-Found 1 worthwhile gig:
+No worthwhile new gigs found.
 
-============================================================
-1. Toptal: ML Inference Engineer – Terminal-Bench Task Designer
-   Region: Anywhere in the World
-   Score: 59/100 — ai, ml, llm, python
-   https://weworkremotely.com/remote-jobs/toptal-ml-inference-engineer-terminal-bench-task-designer
-
----JSON_START---
-[
-  {
-    "title": "Toptal: ML Inference Engineer \u2013 Terminal-Bench Task Designer",
-    "company": "",
-    "region": "Anywhere in the World",
-    "url": "https://weworkremotely.com/remote-jobs/toptal-ml-inference-engineer-terminal-bench-task-designer",
-    "score": 59,
-    "reasons": [
-      "ai",
-      "ml",
-      "llm",
-      "python",
-      "agent"
-    ]
-  }
-]
----JSON_END---
 
 --- STDERR ---
