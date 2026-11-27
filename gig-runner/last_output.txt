@@ -2,7 +2,29 @@ RETURNCODE: 0
 --- STDOUT ---
 🔍 Scanning We Work Remotely for AI/ML gigs...
 
-No worthwhile new gigs found.
+Found 1 worthwhile gig:
 
+============================================================
+1. OpenTrain AI: Full-Stack Engineer
+   Region: Anywhere in the World
+   Score: 124/100 — ai, full-stack, back-end
+   https://weworkremotely.com/remote-jobs/opentrain-ai-full-stack-engineer
+
+---JSON_START---
+[
+  {
+    "title": "OpenTrain AI: Full-Stack Engineer",
+    "company": "",
+    "region": "Anywhere in the World",
+    "url": "https://weworkremotely.com/remote-jobs/opentrain-ai-full-stack-engineer",
+    "score": 124,
+    "reasons": [
+      "ai",
+      "full-stack",
+      "back-end"
+    ]
+  }
+]
+---JSON_END---
 
 --- STDERR ---
